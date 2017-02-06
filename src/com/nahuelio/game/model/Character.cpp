@@ -1,25 +1,25 @@
 /*
- *	Class Character
- *	@author Patricio Ferreira <3dimentionar@gmail.com>
- */
+*	Class Character
+*	@author Patricio Ferreira <3dimentionar@gmail.com>
+*/
 
-#include "headers/Character.h";
-#include <iostream>
+#include "headers/Character.h"
+#include <boost/uuid/uuid_generators.hpp>
 
+//Character::Character() : _id(boost::uuids::random_generator()()) {
 Character::Character() {
-	this->id = 0;
+    this->setType(MELEE);
+    this->setName("Unknown");
 }
 
-Character::Character(int id) {
-	this->id = id ? id : Character();
-	this->name = "Unknown";
+Character::Character(string &name) {
+	Character().setName(name);
 }
 
-Character::Character(string name) {
-	this->name = name;
+Character::Character(string &name, CharacterType type) {
+	Character(name).setType(type);
 }
 
 void Character::talk() {
-	char buffer [100];
-	cout << sprintf(buffer, "%s is taking...", this->name) << endl;
+    printf("[%s] - [%d] is talking...", this->getName().c_str(), this->getType());
 }

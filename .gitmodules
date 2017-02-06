@@ -1,0 +1,6 @@
+[submodule "src/com/nahuelio/libs/glad"]
+	path = src/com/nahuelio/libs/glad
+	url = https://github.com/Dav1dde/glad.git
+[submodule "src/com/nahuelio/libs/glm"]
+	path = src/com/nahuelio/libs/glm
+	url = https://github.com/g-truc/glm.git
