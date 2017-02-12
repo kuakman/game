@@ -11,8 +11,8 @@
  * Bootstraps Game Controller
  */
 Main *Main::bootstrap() {
-    Character *c = new Character("Kuakman", MELEE);
-    c->talk().name("Claire").type(HEROE).talk();
+    Character *c = new Character("Character A", HEROE);
+    c->walk().name("Character B").type(PASSIVE).walk();
     return this;
 }
 

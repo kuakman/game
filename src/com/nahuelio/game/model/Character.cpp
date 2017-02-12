@@ -3,8 +3,10 @@
 *	@author Patricio Ferreira <3dimentionar@gmail.com>
 */
 
+#include <iostream>
 #include "headers/Character.h"
-// #include <boost/uuid/uuid_generators.hpp>
+#include <boost/uuid/uuid_io.hpp>
+#include <boost/uuid/uuid_generators.hpp>
 
 /** Constructors **/
 
@@ -12,22 +14,26 @@ Character::Character() {
     Character("Unknown");
 }
 
-Character::Character(string name) {
-    Character(name, MELEE);
+Character::Character(std::string name) {
+    Character(name, HEROE);
 }
 
-Character::Character(string name, CharacterType type) {
+Character::Character(std::string name, CharacterType type) : _id(boost::uuids::random_generator()()) {
     this->name(name);
     this->type(type);
 }
 
 /** Setters & Getters **/
 
-string Character::name() {
+std::string Character::id() {
+    return boost::uuids::to_string(_id);
+}
+
+std::string Character::name() {
     return _name;
 }
 
-Character Character::name(string name) {
+Character Character::name(std::string name) {
     _name = name;
     return *this;
 }
@@ -43,7 +49,7 @@ Character Character::type(CharacterType type) {
 
 /** Methods **/
 
-Character Character::talk() {
-    printf("[%s] - [%d] is talking...\n", this->name().c_str(), this->type());
+Character Character::walk() {
+    printf("[%s] >> [%s] - [%d] is walking...\n", this->id().c_str(), this->name().c_str(), this->type());
     return *this;
 }

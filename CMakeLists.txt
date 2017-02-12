@@ -6,13 +6,13 @@ set(BASE_DIR src/com/nahuelio)
 
 file(GLOB_RECURSE SOURCE_CPP ${BASE_DIR}/game/*.cpp)
 
-add_executable(${PROJECT_NAME} ${SOURCE_CPP} src/com/nahuelio/game/headers/main.h src/com/nahuelio/game/controller/MainController.cpp src/com/nahuelio/game/controller/headers/MainController.h)
+add_executable(${PROJECT_NAME} ${SOURCE_CPP} src/com/nahuelio/game/headers/main.h)
 
 set(Boost_USE_STATIC_LIBS ON)
 set(Boost_USE_MULTITHREADED ON)
 set(Boost_USE_STATIC_RUNTIME OFF)
 
-find_package(Boost ${BOOST_MIN_VERSION} REQUIRED)
+find_package(Boost 1.60 REQUIRED)
 if(NOT Boost_FOUND)
     message("Boost not found")
 endif(NOT Boost_FOUND)

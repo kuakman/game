@@ -9,12 +9,10 @@
 #include <string>
 #include <boost/uuid/uuid.hpp>
 
-using namespace std;
-
 typedef enum {
-    MELEE = 1,
-    HEROE = 2,
-    SPECIAL = 3
+    HEROE = 1,
+	ENEMY = 2,
+    PASSIVE = 3,
 } CharacterType;
 
 class Character {
@@ -22,22 +20,22 @@ class Character {
 	private:
 		boost::uuids::uuid _id;
         CharacterType _type;
-		string _name;
+		std::string _name;
 
 	public:
         Character();
-        Character(string name);
-        Character(string name, CharacterType type);
+        Character(std::string name);
+        Character(std::string name, CharacterType type);
 
-		Character talk();
+		Character walk();
 
-        boost::uuids::uuid getId() { return _id; };
+        std::string id();
 
         CharacterType type();
         Character type(CharacterType type);
 
-        string name();
-        Character name(string name);
+        std::string name();
+        Character name(std::string name);
 };
 
 #endif /* HEADERS_CHARACTER_H_ */
