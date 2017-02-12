@@ -26,18 +26,18 @@ class Character {
 
 	public:
         Character();
-        Character(string &name);
-        Character(string &name, CharacterType type);
+        Character(string name);
+        Character(string name, CharacterType type);
 
-		void talk();
+		Character talk();
 
         boost::uuids::uuid getId() { return _id; };
 
-        CharacterType getType() { return _type; }
-        Character& setType(CharacterType type) { _type = type; return *this; };
+        CharacterType type();
+        Character type(CharacterType type);
 
-        string getName() { return _name; };
-        Character& setName(string name) { _name = name; return *this; };
+        string name();
+        Character name(string name);
 };
 
 #endif /* HEADERS_CHARACTER_H_ */

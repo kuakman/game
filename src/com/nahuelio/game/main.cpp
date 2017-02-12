@@ -11,10 +11,8 @@
  * Bootstraps Game Controller
  */
 Main *Main::bootstrap() {
-    // TODO: Controllers
-    string name = "kuakman";
-    Character *c = new Character(name, HEROE);
-    c->talk();
+    Character *c = new Character("Kuakman", MELEE);
+    c->talk().name("Claire").type(HEROE).talk();
     return this;
 }
 

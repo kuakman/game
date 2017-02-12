@@ -4,22 +4,46 @@
 */
 
 #include "headers/Character.h"
-#include <boost/uuid/uuid_generators.hpp>
+// #include <boost/uuid/uuid_generators.hpp>
 
-//Character::Character() : _id(boost::uuids::random_generator()()) {
+/** Constructors **/
+
 Character::Character() {
-    this->setType(MELEE);
-    this->setName("Unknown");
+    Character("Unknown");
 }
 
-Character::Character(string &name) {
-	Character().setName(name);
+Character::Character(string name) {
+    Character(name, MELEE);
 }
 
-Character::Character(string &name, CharacterType type) {
-	Character(name).setType(type);
+Character::Character(string name, CharacterType type) {
+    this->name(name);
+    this->type(type);
 }
 
-void Character::talk() {
-    printf("[%s] - [%d] is talking...", this->getName().c_str(), this->getType());
+/** Setters & Getters **/
+
+string Character::name() {
+    return _name;
+}
+
+Character Character::name(string name) {
+    _name = name;
+    return *this;
+}
+
+CharacterType Character::type() {
+    return _type;
+}
+
+Character Character::type(CharacterType type) {
+    _type = type;
+    return *this;
+}
+
+/** Methods **/
+
+Character Character::talk() {
+    printf("[%s] - [%d] is talking...\n", this->name().c_str(), this->type());
+    return *this;
 }
