@@ -9,33 +9,42 @@
 #include <string>
 #include <boost/uuid/uuid.hpp>
 
-typedef enum {
-    HEROE = 1,
-	ENEMY = 2,
-    PASSIVE = 3,
-} CharacterType;
+namespace game_model {
 
-class Character {
+    typedef enum {
+        HEROE = 1,
+        ENEMY = 2,
+        PASSIVE = 3,
+    } CharacterType;
 
-	private:
-		boost::uuids::uuid _id;
-        CharacterType _type;
-		std::string _name;
+    class Character {
 
-	public:
-        Character();
-        Character(std::string name);
-        Character(std::string name, CharacterType type);
+        private:
+            boost::uuids::uuid _id;
+            CharacterType _type;
+            std::string _name;
 
-		Character walk();
+        public:
+            Character();
 
-        std::string id();
+            Character(std::string name);
 
-        CharacterType type();
-        Character type(CharacterType type);
+            Character(std::string name, CharacterType type);
 
-        std::string name();
-        Character name(std::string name);
-};
+            Character walk();
+
+            std::string id();
+
+            CharacterType type();
+
+            Character type(CharacterType type);
+
+            std::string name();
+
+            Character name(std::string name);
+
+    };
+
+}
 
 #endif /* HEADERS_CHARACTER_H_ */

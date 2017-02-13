@@ -3,16 +3,17 @@
 *	@author Patricio Ferreira <3dimentionar@gmail.com>
 */
 
-#include <iostream>
-#include "headers/main.h"
-#include "model/headers/Character.h"
+#include "headers/Main.h"
+#include "headers/Game.h"
+
+using namespace game_main;
+using namespace game_controller;
 
 /*
  * Bootstraps Game Controller
  */
 Main *Main::bootstrap() {
-    Character *c = new Character("Character A", HEROE);
-    c->walk().name("Character B").type(PASSIVE).walk();
+    Game::instance()->get("controller");
     return this;
 }
 

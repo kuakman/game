@@ -5,9 +5,11 @@ set(CMAKE_CXX_STANDARD 11)
 set(BASE_DIR src/com/nahuelio)
 
 file(GLOB_RECURSE SOURCE_CPP ${BASE_DIR}/game/*.cpp)
+file(GLOB_RECURSE SOURCE_H ${BASE_DIR}/game/**/*.h)
 
-add_executable(${PROJECT_NAME} ${SOURCE_CPP} src/com/nahuelio/game/headers/main.h)
+add_executable(${PROJECT_NAME} ${SOURCE_CPP} ${SOURCE_H})
 
+#### Boost
 set(Boost_USE_STATIC_LIBS ON)
 set(Boost_USE_MULTITHREADED ON)
 set(Boost_USE_STATIC_RUNTIME OFF)
