@@ -9,12 +9,7 @@
 namespace game_main {
 
     class Main {
-
-        protected:
-            int id;
-
         public:
-            Main *bootstrap();
             int run();
 
     };

@@ -1,32 +1,29 @@
 /*
-*	Interface Game
-*	@author Patricio Ferreira <3dimentionar@gmail.com>
-*/
+ * Interface Game
+ * @author Patricio Ferreira <3dimentionar@gmail.com>
+ * Copyright (c) 2017 nahuelio. All rights reserved.
+ */
 
 #ifndef GAME_MAINCONTROLLER_H
 #define GAME_MAINCONTROLLER_H
 
 #include <string>
+#include <map>
+#include "../controller/headers/Controller.h"
 
 namespace game_controller {
 
     /*
-     * Facade references
-     */
-    typedef union {
-
-    } GameFacade;
-
-    /*
-     * Singleton Game Facade
+     * Class Game
      */
     class Game {
 
+        static std::map<std::string, void*> _factory;
         static Game *_instance;
-        Game();
 
         public:
-            static void get(std::string name);
+            Game();
+            static Controller *get(std::string name);
             static Game *instance();
 
     };

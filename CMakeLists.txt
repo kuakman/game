@@ -20,10 +20,10 @@ if(NOT Boost_FOUND)
 endif(NOT Boost_FOUND)
 
 #### OpenGL
-find_package(OpenGL REQUIRED)
-if(NOT OpenGL_FOUND)
+find_package(OpenGL 4.5 REQUIRED)
+if(NOT OPENGL_FOUND)
     message("OPENGL not found")
-endif(NOT OpenGL_FOUND)
+endif(NOT OPENGL_FOUND)
 
 include_directories(${OpenGL_INCLUDE_DIRS})
 link_directories(${OpenGL_LIBRARY_DIRS})

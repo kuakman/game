@@ -20,9 +20,10 @@ Character::Character(std::string name) {
     Character(name, HEROE);
 }
 
-Character::Character(std::string name, CharacterType type) : _id(boost::uuids::random_generator()()) {
-    this->name(name);
-	this->type(type);
+Character::Character(std::string name, CharacterType type) :
+		_id(boost::uuids::random_generator()()),
+		_name(name),
+		_type(type) {
 }
 
 /** Setters & Getters **/

@@ -1,8 +1,10 @@
 /*
-*	Class Main
-*	@author Patricio Ferreira <3dimentionar@gmail.com>
-*/
+ * Class Main
+ * @author Patricio Ferreira <3dimentionar@gmail.com>
+ * Copyright (c) 2017 nahuelio. All rights reserved.
+ */
 
+#include <iostream>
 #include "headers/Main.h"
 #include "headers/Game.h"
 
@@ -10,17 +12,11 @@ using namespace game_main;
 using namespace game_controller;
 
 /*
- * Bootstraps Game Controller
- */
-Main *Main::bootstrap() {
-    Game::instance()->get("controller");
-    return this;
-}
-
-/*
  * Run
  */
 int Main::run() {
+    Game::instance()->get("Game")->run();
+    Game::instance()->get("Sound")->run();
     return 0;
 }
 
@@ -29,5 +25,5 @@ int Main::run() {
  */
 int main() {
     Main *main = new Main();
-	return main->bootstrap()->run();
+    return main->run();
 }
