@@ -4,47 +4,57 @@ project(game)
 set(CMAKE_CXX_STANDARD 11)
 set(BASE_DIR src/com/nahuelio)
 
+## Project Source & Headers
 file(GLOB_RECURSE SOURCE_CPP ${BASE_DIR}/game/*.cpp)
 file(GLOB_RECURSE SOURCE_H ${BASE_DIR}/game/**/*.h)
 
-add_executable(${PROJECT_NAME} ${SOURCE_CPP} ${SOURCE_H})
+## GLAD & GLM Sources & Headers
+get_filename_component(GLAD_INCLUDE_DIR ${BASE_DIR}/libs/glad/include/glad ABSOLUTE)
+get_filename_component(GLAD_SOURCE_DIR ${BASE_DIR}/libs/glad/src ABSOLUTE)
+get_filename_component(GLM_DIR ${BASE_DIR}/libs/glm/glm ABSOLUTE)
+
+## Add All Sources & Headers
+add_executable(${PROJECT_NAME} ${SOURCE_CPP} ${SOURCE_H} ${GLAD_INCLUDE_DIR}/glad.h ${GLAD_SOURCE_DIR}/glad.c)
 
 #### Boost
 set(Boost_USE_STATIC_LIBS ON)
 set(Boost_USE_MULTITHREADED ON)
 set(Boost_USE_STATIC_RUNTIME OFF)
 
-find_package(Boost 1.60 REQUIRED)
+find_package(PkgConfig REQUIRED)
+
+find_package(Boost 1.64 REQUIRED)
 if(NOT Boost_FOUND)
     message("Boost not found")
 endif(NOT Boost_FOUND)
 
 #### OpenGL
-find_package(OpenGL 4.5 REQUIRED)
-if(NOT OPENGL_FOUND)
-    message("OPENGL not found")
-endif(NOT OPENGL_FOUND)
+find_package(OpenGL 3.2 REQUIRED)
+if(OPENGL_FOUND)
+    message(STATUS "OPENGL Found")
+else()
+    message(STATUS "OPENGL Not Found")
+endif(OPENGL_FOUND)
 
-include_directories(${OpenGL_INCLUDE_DIRS})
-link_directories(${OpenGL_LIBRARY_DIRS})
-add_definitions(${OpenGL_DEFINITIONS})
+include_directories(${OPENGL_INCLUDE_DIR})
+link_directories(${OPENGL_LIBRARIES})
 
 #### GLFW
-find_package(GLFW3 3.2 REQUIRED)
-if(NOT GLFW3_FOUND)
-    message("GLFW3 not found")
-endif(NOT GLFW3_FOUND)
+pkg_search_module(GLFW3 REQUIRED glfw3)
+if(GLFW3_FOUND)
+    message(STATUS "GLWF3 Found")
+else()
+    message("GLFW3 Not found")
+endif(GLFW3_FOUND)
 
 include_directories(${GLFW3_INCLUDE_DIRS})
 link_directories(${GLFW3_LIBRARY_DIRS})
-add_definitions(${GLFW3_DEFINITIONS})
 
 #### GLAD & GLM
-include_directories(${BASE_DIR}/libs/glad/include ${BASE_DIR}/libs/glm)
-
+include_directories(${GLAD_INCLUDE_DIR} ${GLM_DIR})
 
 #### Target
-target_include_directories(${PROJECT_NAME} PUBLIC ${OpenGL_INCLUDE_DIRS})
+target_include_directories(${PROJECT_NAME} PUBLIC ${OPENGL_INCLUDE_DIR})
+target_include_directories(${PROJECT_NAME} PUBLIC ${GLFW3_INCLUDE_DIR})
 
-target_link_libraries(${PROJECT_NAME} ${OpenGL_LIBRARY_DIRS})
-target_link_libraries(${PROJECT_NAME} ${GLFW3_LIBRARY_DIRS})
+target_link_libraries(${PROJECT_NAME} ${OPENGL_LIBRARIES} ${GLFW3_LIBRARIES})

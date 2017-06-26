@@ -15,8 +15,9 @@ using namespace game_controller;
  * Run
  */
 int Main::run() {
-    Game::instance()->get("Game")->run();
+    Game::instance()->get("Window")->run();
     Game::instance()->get("Sound")->run();
+    Game::instance()->get("Game")->run()->terminate();
     return 0;
 }
 

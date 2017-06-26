@@ -18,13 +18,13 @@ namespace game_controller {
      */
     class Game {
 
-        static std::map<std::string, void*> _factory;
+        static std::map<std::string, Controller*> _factory;
         static Game *_instance;
 
         public:
             Game();
-            static Controller *get(std::string name);
-            static Game *instance();
+            static Controller* get(std::string name);
+            static Game* instance();
 
     };
 

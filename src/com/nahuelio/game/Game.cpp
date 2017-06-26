@@ -7,7 +7,7 @@
 #include "headers/Game.h"
 #include "controller/headers/GameController.h"
 #include "controller/headers/SoundController.h"
-
+#include "controller/headers/WindowController.h"
 #include <boost/assign.hpp>
 
 using namespace game_controller;
@@ -20,8 +20,11 @@ Game::Game() {}
 
 Game *Game::_instance = 0;
 
-std::map<std::string, void*> Game::_factory =
-        boost::assign::map_list_of("Game", new GameController()) ("Sound", new SoundController());
+std::map<std::string, Controller*> Game::_factory =
+        boost::assign::map_list_of<std::string, Controller*>
+                ("Window", WindowController::instance())
+                ("Game", GameController::instance())
+                ("Sound", SoundController::instance());
 
 /** Methods **/
 
@@ -32,6 +35,6 @@ Game *Game::instance() {
     return _instance;
 }
 
-Controller *Game::get(std::string name) {
-    return (Controller*) _factory.at(name);
+Controller* Game::get(std::string name) {
+    return _factory.at(name);
 }
