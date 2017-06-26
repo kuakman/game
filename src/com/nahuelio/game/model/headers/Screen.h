@@ -14,18 +14,15 @@ namespace game_model {
 
     class Screen {
 
-    public:
-        static const int CTX_MAJOR;
-        static const int CTX_MINOR;
-        static const GLuint WIDTH;
-        static const GLuint HEIGHT;
-        static const char* TITLE;
+        public:
+            static const int CTX_MAJOR;
+            static const int CTX_MINOR;
+            static const GLuint WIDTH;
+            static const GLuint HEIGHT;
+            static const char* TITLE;
+            static GLFWwindow *window;
 
-        static GLFWwindow *window;
-
-        Screen();
-
-        //void getWindowContext();
+            Screen();
     };
 
 }

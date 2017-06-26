@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD 11)
 set(BASE_DIR src/com/nahuelio)
 
 ## Project Source & Headers
-file(GLOB_RECURSE SOURCE_CPP ${BASE_DIR}/game/*.cpp)
+file(GLOB_RECURSE SOURCE_CPP ${BASE_DIR}/game/**/*.cpp ${BASE_DIR}/game/*.cpp)
 file(GLOB_RECURSE SOURCE_H ${BASE_DIR}/game/**/*.h)
 
 ## GLAD & GLM Sources & Headers
@@ -16,17 +16,19 @@ get_filename_component(GLM_DIR ${BASE_DIR}/libs/glm/glm ABSOLUTE)
 ## Add All Sources & Headers
 add_executable(${PROJECT_NAME} ${SOURCE_CPP} ${SOURCE_H} ${GLAD_INCLUDE_DIR}/glad.h ${GLAD_SOURCE_DIR}/glad.c)
 
-#### Boost
-set(Boost_USE_STATIC_LIBS ON)
-set(Boost_USE_MULTITHREADED ON)
-set(Boost_USE_STATIC_RUNTIME OFF)
-
+#### Package Config
 find_package(PkgConfig REQUIRED)
 
+#### Boost
 find_package(Boost 1.64 REQUIRED)
-if(NOT Boost_FOUND)
-    message("Boost not found")
-endif(NOT Boost_FOUND)
+if(Boost_FOUND)
+    set(Boost_USE_STATIC_LIBS ON)
+    set(Boost_USE_MULTITHREADED ON)
+    set(Boost_USE_STATIC_RUNTIME OFF)
+    message(STATUS "Boost Found")
+else()
+    message("Boost Not found")
+endif(Boost_FOUND)
 
 #### OpenGL
 find_package(OpenGL 3.2 REQUIRED)
