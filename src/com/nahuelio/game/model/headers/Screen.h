@@ -19,8 +19,13 @@ namespace game_model {
             static const int CTX_MINOR;
             static const int CTX_X;
             static const int CTX_Y;
-            static const GLuint WIDTH;
-            static const GLuint HEIGHT;
+
+            static const GLuint HD_WIDTH;
+            static const GLuint HD_HEIGHT;
+
+            static const GLuint FULLHD_WIDTH;
+            static const GLuint FULLHD_HEIGHT;
+
             static const char* TITLE;
             static GLFWwindow *window;
 

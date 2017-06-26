@@ -29,7 +29,7 @@ GameController *GameController::instance() {
 GameController *GameController::initialize() {
     Screen *screen = ((WindowController *) Game::instance()->get("Window"))->getScreen();
     ((ViewportController *) Game::instance()->get("Viewport"))
-            ->setViewport(screen->CTX_X, screen->CTX_Y, screen->WIDTH, screen->HEIGHT);
+            ->setViewport(screen->CTX_X, screen->CTX_Y, screen->HD_WIDTH, screen->HD_HEIGHT);
     return this;
 };
 

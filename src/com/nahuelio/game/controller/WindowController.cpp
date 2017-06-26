@@ -44,7 +44,7 @@ WindowController *WindowController::initialize() {
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
     glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
 
-    screen->window = glfwCreateWindow(screen->WIDTH, screen->HEIGHT, screen->TITLE, NULL, NULL);
+    screen->window = glfwCreateWindow(screen->HD_WIDTH, screen->HD_HEIGHT, screen->TITLE, NULL, NULL);
 
     if(!screen->window) this->onGLFWError("Failed to create GLFWwindow");
 

@@ -16,8 +16,13 @@ const int Screen::CTX_MINOR = 2;
 const int Screen::CTX_X = 0;
 const int Screen::CTX_Y = 0;
 
-const GLuint Screen::WIDTH = 1280;
-const GLuint Screen::HEIGHT = 1024;
+// HD
+const GLuint Screen::HD_WIDTH = 1280;
+const GLuint Screen::HD_HEIGHT = 720;
+
+// Full HD
+const GLuint Screen::FULLHD_WIDTH = 1920;
+const GLuint Screen::FULLHD_HEIGHT = 1080;
 
 const char* Screen::TITLE = "Game @nahuelio";
 
