@@ -19,7 +19,7 @@ int Main::run() {
     Game::instance()->get("Sound")->run();
     Game::instance()->get("Game")->run()->terminate();
     return 0;
-}
+};
 
 /*
  * Game Launch
@@ -27,4 +27,4 @@ int Main::run() {
 int main() {
     Main *main = new Main();
     return main->run();
-}
+};

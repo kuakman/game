@@ -1,8 +1,8 @@
-/*
+/**
  * Class SoundController
  * @author Patricio Ferreira <3dimentionar@gmail.com>
  * Copyright (c) 2017 nahuelio. All rights reserved.
- */
+ **/
 #include <iostream>
 #include "headers/SoundController.h"
 
@@ -23,7 +23,7 @@ SoundController *SoundController::instance() {
         _instance = new SoundController();
     }
     return _instance;
-}
+};
 
 Controller *SoundController::run() {
     std::cout << "TODO: SoundController.run()" << std::endl;

@@ -13,6 +13,9 @@ Screen::Screen() {};
 const int Screen::CTX_MAJOR = 3;
 const int Screen::CTX_MINOR = 2;
 
+const int Screen::CTX_X = 0;
+const int Screen::CTX_Y = 0;
+
 const GLuint Screen::WIDTH = 1280;
 const GLuint Screen::HEIGHT = 1024;
 

@@ -17,6 +17,8 @@ namespace game_model {
         public:
             static const int CTX_MAJOR;
             static const int CTX_MINOR;
+            static const int CTX_X;
+            static const int CTX_Y;
             static const GLuint WIDTH;
             static const GLuint HEIGHT;
             static const char* TITLE;

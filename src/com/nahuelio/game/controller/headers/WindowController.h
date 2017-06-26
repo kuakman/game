@@ -23,6 +23,8 @@ namespace game_controller {
             static WindowController *instance();
             static Screen *screen;
 
+            Screen *getScreen();
+
             virtual WindowController *GLLoader();
             virtual WindowController *initialize();
             virtual Controller *run();

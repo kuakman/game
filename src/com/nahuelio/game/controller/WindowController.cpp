@@ -23,7 +23,13 @@ WindowController *WindowController::instance() {
         _instance = new WindowController();
     }
     return _instance;
-}
+};
+
+/** Getters & Setters **/
+
+Screen *WindowController::getScreen() {
+    return screen;
+};
 
 /** Methods **/
 
@@ -45,13 +51,13 @@ WindowController *WindowController::initialize() {
     glfwMakeContextCurrent(screen->window);
 
     return this;
-}
+};
 
 WindowController *WindowController::GLLoader() {
     if(!gladLoadGLLoader((GLADloadproc) glfwGetProcAddress)) this->onGLFWError("GLAD couldn't bind OpenGL ProcAddress");
     return this;
-}
+};
 
 Controller *WindowController::run() {
     return this->initialize()->GLLoader();
-}
+};

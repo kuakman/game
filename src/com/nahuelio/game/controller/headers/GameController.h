@@ -19,6 +19,9 @@ namespace game_controller {
             GameController();
             static GameController *instance();
 
+            virtual GameController *initialize();
+            virtual GameController *bindings();
+            virtual GameController *start();
             virtual Controller *run();
     };
 
