@@ -34,5 +34,5 @@ docs
 .project
 .idea
 .settings
-cmake-build-debug
 debug
+release

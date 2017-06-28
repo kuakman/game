@@ -8,6 +8,7 @@
 #include "controller/headers/GameController.h"
 #include "controller/game/headers/ViewportController.h"
 #include "controller/game/headers/KeyboardController.h"
+#include "controller/game/headers/ShaderController.h"
 #include "controller/headers/SoundController.h"
 #include <boost/assign.hpp>
 
@@ -27,6 +28,7 @@ std::map<std::string, Controller*> Game::_factory =
                 ("Game", GameController::instance())
                 ("Viewport", ViewportController::instance())
                 ("Keyboard", KeyboardController::instance())
+                ("Shader", ShaderController::instance())
                 ("Sound", SoundController::instance());
 
 /** Methods **/

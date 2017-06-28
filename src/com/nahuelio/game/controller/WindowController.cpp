@@ -43,6 +43,8 @@ WindowController *WindowController::initialize() {
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
     glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
+    glfwWindowHint(GLFW_SAMPLES, 4);
+    glfwWindowHint(GLFW_DOUBLEBUFFER, GL_TRUE);
 
     screen->window = glfwCreateWindow(screen->HD_WIDTH, screen->HD_HEIGHT, screen->TITLE, NULL, NULL);
 

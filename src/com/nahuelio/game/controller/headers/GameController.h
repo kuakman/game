@@ -17,12 +17,14 @@ namespace game_controller {
 
         public:
             GameController();
-            static GameController *instance();
 
             virtual GameController *initialize();
             virtual GameController *bindings();
+            virtual GameController *loadShaders();
             virtual GameController *start();
             virtual Controller *run();
+
+            static GameController *instance();
     };
 
 }

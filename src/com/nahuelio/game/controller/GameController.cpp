@@ -7,6 +7,7 @@
 #include "headers/WindowController.h"
 #include "game/headers/ViewportController.h"
 #include "game/headers/KeyboardController.h"
+#include "game/headers/ShaderController.h"
 #include "../headers/Game.h"
 
 using namespace game_controller;
@@ -38,26 +39,39 @@ GameController *GameController::bindings() {
     return this;
 };
 
+GameController *GameController::loadShaders() {
+    ((ShaderController *) Game::instance()->get("Shader"))->load("VertexShader", GL_VERTEX_SHADER);
+    ((ShaderController *) Game::instance()->get("Shader"))->load("FragmentShader", GL_FRAGMENT_SHADER);
+    return this;
+};
+
 GameController *GameController::start() {
     Screen *screen = ((WindowController *) Game::instance()->get("Window"))->getScreen();
+
     while(!glfwWindowShouldClose(screen->window)) {
         glfwPollEvents();
 
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
 
-        // Time to learn:
-        // - Vertex Array Buffers
-        // - Vertex Shader (Basic Shader) for 2D shapes
-        // - Fragment Shaders
-        // - Glad 3D Loaders & Textures
+        // FIXME: Refactor
+        unsigned int vbo;
+        float vertices[] = {
+                -1.0f, -1.0f, 0.0f,
+                0.0f, 1.0f, 0.0f,
+                1.0f, -1.0f, 0.0f
+        };
+        glGenBuffers(1, &vbo);
+        glBindBuffer(GL_ARRAY_BUFFER, vbo);
+        glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
         glfwSwapBuffers(screen->window);
     }
+
     this->terminate();
     return this;
 };
 
 Controller *GameController::run() {
-    return (Controller *) this->initialize()->bindings()->start();
-};
+    return (Controller *) this->initialize()->bindings()->loadShaders()->start();
+}

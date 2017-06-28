@@ -4,6 +4,10 @@ project(game)
 set(CMAKE_CXX_STANDARD 11)
 set(BASE_DIR src/com/nahuelio)
 
+message("\nCurrent Profile: " ${CMAKE_PROFILE})
+message("Current Source Directory: " ${CMAKE_CURRENT_SOURCE_DIR})
+message("Current Binary Directory: " ${CMAKE_CURRENT_BINARY_DIR}\n)
+
 ## Project Source & Headers
 file(GLOB_RECURSE SOURCE_CPP ${BASE_DIR}/game/**/*.cpp ${BASE_DIR}/game/*.cpp)
 file(GLOB_RECURSE SOURCE_H ${BASE_DIR}/game/**/*.h)
@@ -20,11 +24,12 @@ add_executable(${PROJECT_NAME} ${SOURCE_CPP} ${SOURCE_H} ${GLAD_INCLUDE_DIR}/gla
 find_package(PkgConfig REQUIRED)
 
 #### Boost
-find_package(Boost 1.64 REQUIRED)
+find_package(Boost 1.64 REQUIRED COMPONENTS system filesystem date_time iostreams)
 if(Boost_FOUND)
     set(Boost_USE_STATIC_LIBS ON)
     set(Boost_USE_MULTITHREADED ON)
     set(Boost_USE_STATIC_RUNTIME OFF)
+    include_directories(${Boost_INCLUDE_DIRS})
     message(STATUS "Boost Found")
 else()
     message("Boost Not found")
@@ -55,8 +60,14 @@ link_directories(${GLFW3_LIBRARY_DIRS})
 #### GLAD & GLM
 include_directories(${GLAD_INCLUDE_DIR} ${GLM_DIR})
 
+### Assets
+file(GLOB_RECURSE SHADERS ${BASE_DIR}/game/view/shaders/**/*.glsl ${BASE_DIR}/game/view/shaders/*.glsl)
+message(STATUS "Assets | Shaders")
+message(STATUS "    ${SHADERS}")
+file(COPY ${SHADERS} DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/shaders)
+
 #### Target
 target_include_directories(${PROJECT_NAME} PUBLIC ${OPENGL_INCLUDE_DIR})
 target_include_directories(${PROJECT_NAME} PUBLIC ${GLFW3_INCLUDE_DIR})
 
-target_link_libraries(${PROJECT_NAME} ${OPENGL_LIBRARIES} ${GLFW3_LIBRARIES})
+target_link_libraries(${PROJECT_NAME} ${Boost_LIBRARIES} ${OPENGL_LIBRARIES} ${GLFW3_LIBRARIES})
