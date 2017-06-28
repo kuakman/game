@@ -38,10 +38,11 @@ const GLchar* *ShaderController::read(std::string file, std::string ext) {
     return (const GLchar* *) output.data();
 }
 
-void ShaderController::compile(std::string file, GLuint id) {
+GLuint ShaderController::compile(std::string file, GLuint id) {
     int success;
     glCompileShader(id);
     this->debug(file, id, success);
+    return id;
 }
 
 void ShaderController::debug(std::string file, GLuint id, int success) {
@@ -62,12 +63,11 @@ void ShaderController::debugProgram(GLuint id, int success) {
     }
 }
 
-int ShaderController::load(std::string file, GLenum type) {
+GLuint ShaderController::load(std::string file, GLenum type) {
     unsigned int shader;
     shader = glCreateShader(type);
     glShaderSource(shader, 1, this->read(file, "glsl"), NULL);
-    this->compile(file, shader);
-    return shader;
+    return this->compile(file, shader);
 }
 
 int ShaderController::getProgramWith() {

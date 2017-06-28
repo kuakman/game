@@ -19,7 +19,7 @@ namespace game_controller {
         private:
             std::string basePath;
             void initialize(std::string basePath);
-            void compile(std::string file, GLuint id);
+            GLuint compile(std::string file, GLuint id);
             void debug(std::string file, GLuint id, int success);
             void debugProgram(GLuint id, int success);
             const GLchar* *read(std::string file, std::string ext);
@@ -28,7 +28,7 @@ namespace game_controller {
             ShaderController();
             ShaderController(std::string basePath);
 
-            int load(std::string file, GLenum type);
+            GLuint load(std::string file, GLenum type);
             int getProgramWith();
 
             static ShaderController *instance();
