@@ -1,3 +1,6 @@
+# Project
+/cmake-build-debug
+
 # Compiled Object files
 *.slo
 *.lo
@@ -28,6 +31,9 @@
 
 # Doxygen
 docs
+
+# OS
+.DS_Store
 
 # Editor
 .cproject

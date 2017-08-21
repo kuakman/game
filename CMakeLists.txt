@@ -1,6 +1,11 @@
 cmake_minimum_required(VERSION 3.6)
 project(game)
 
+# Notes to install dependencies on Mac OS Sierra:
+# 1) git submodule update --init --recursive (Glad & GLM)
+# 2) brew install glfw3
+# 3) brew install boost
+
 set(CMAKE_CXX_STANDARD 11)
 set(BASE_DIR src/com/nahuelio)
 
