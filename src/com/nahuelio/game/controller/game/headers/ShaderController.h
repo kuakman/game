@@ -7,10 +7,13 @@
 #ifndef GAME_SHADERCONTROLLER_H
 #define GAME_SHADERCONTROLLER_H
 
-#include <glad.h>
+#include <glad/glad.h>
+#include <map>
 #include "../../headers/Controller.h"
 
 namespace game_controller {
+
+    typedef std::map<std::string, GLuint> map_shader;
 
     class ShaderController : public Controller {
 
@@ -18,18 +21,21 @@ namespace game_controller {
 
         private:
             std::string basePath;
+            std::map<std::string, GLuint> shaders;
+
             void initialize(std::string basePath);
-            GLuint compile(std::string file, GLuint id);
+            GLuint compile(std::string file, std::string ext, GLuint id);
             void debug(std::string file, GLuint id, int success);
             void debugProgram(GLuint id, int success);
-            const GLchar* *read(std::string file, std::string ext);
+            const std::string resolvePath(std::string file, std::string ext);
+            const char* read(std::string file, std::string ext);
 
         public:
             ShaderController();
             ShaderController(std::string basePath);
 
             GLuint load(std::string file, GLenum type);
-            int getProgramWith();
+            unsigned int getProgramWith();
 
             static ShaderController *instance();
     };

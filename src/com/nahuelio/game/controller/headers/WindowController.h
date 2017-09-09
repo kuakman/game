@@ -8,7 +8,7 @@
 
 #include "Controller.h"
 #include "../../model/headers/Screen.h"
-#include <glfw/glfw3.h>
+#include <GLFW/glfw3.h>
 
 using namespace game_model;
 

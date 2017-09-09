@@ -8,7 +8,6 @@
 #include "controller/headers/GameController.h"
 #include "controller/game/headers/ViewportController.h"
 #include "controller/game/headers/KeyboardController.h"
-#include "controller/game/headers/ShaderController.h"
 #include "controller/headers/SoundController.h"
 #include <boost/assign.hpp>
 
@@ -25,11 +24,11 @@ Game *Game::_instance = 0;
 std::map<std::string, Controller*> Game::_factory =
         boost::assign::map_list_of<std::string, Controller*>
                 ("Window", WindowController::instance())
-                ("Game", GameController::instance())
                 ("Viewport", ViewportController::instance())
                 ("Keyboard", KeyboardController::instance())
                 ("Shader", ShaderController::instance())
-                ("Sound", SoundController::instance());
+                ("Sound", SoundController::instance())
+                ("Game", GameController::instance());
 
 /** Methods **/
 

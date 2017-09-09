@@ -7,8 +7,8 @@
 #ifndef GAME_SCREEN_H
 #define GAME_SCREEN_H
 
-#include "glad.h"
-#include <glfw/glfw3.h>
+#include "glad/glad.h"
+#include <GLFW/glfw3.h>
 
 namespace game_model {
 

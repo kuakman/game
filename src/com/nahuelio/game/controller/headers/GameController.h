@@ -8,6 +8,7 @@
 #define GAME_GAMECONTROLLER_H
 
 #include "Controller.h"
+#include "../game/headers/ShaderController.h"
 
 namespace game_controller {
 
@@ -17,6 +18,8 @@ namespace game_controller {
 
         public:
             GameController();
+
+            ShaderController *shaderController;
 
             virtual GameController *initialize();
             virtual GameController *bindings();

@@ -8,7 +8,7 @@
 #define GAME_VIEWPORTCONTROLLER_H
 
 #include "../../headers/Controller.h"
-#include "glad.h"
+#include "glad/glad.h"
 
 namespace game_controller {
 

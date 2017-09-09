@@ -6,7 +6,7 @@
 #include <iostream>
 #include "headers/Controller.h"
 
-#include <glfw/glfw3.h>
+#include <GLFW/glfw3.h>
 
 using namespace game_controller;
 

@@ -5,6 +5,8 @@
  **/
 #include "headers/ShaderController.h"
 #include <boost/filesystem.hpp>
+#include <boost/assign/list_inserter.hpp>
+#include <boost/foreach.hpp>
 #include <iostream>
 
 namespace fs = boost::filesystem;
@@ -31,17 +33,21 @@ void ShaderController::initialize(std::string basePath) {
     this->basePath = basePath;
 };
 
-const GLchar* *ShaderController::read(std::string file, std::string ext) {
-    std::string output = "";
-    fs::load_string_file((this->basePath + "/shaders/" + file + "." + ext), output);
-    // FIXME: Cast to GLchar: this causes an exception of Bad Address to pointer
-    return (const GLchar* *) output.data();
+const std::string ShaderController::resolvePath(std::string file, std::string ext) {
+    return (this->basePath + "/shaders/" + file + "." + ext);
 }
 
-GLuint ShaderController::compile(std::string file, GLuint id) {
+const char* ShaderController::read(std::string file, std::string ext) {
+    std::string output = "";
+    fs::load_string_file(this->resolvePath(file, ext), output);
+    return output.c_str();
+}
+
+GLuint ShaderController::compile(std::string file, std::string ext, GLuint id) {
     int success;
     glCompileShader(id);
     this->debug(file, id, success);
+    boost::assign::insert(this->shaders) (this->resolvePath(file, ext), id);
     return id;
 }
 
@@ -66,18 +72,19 @@ void ShaderController::debugProgram(GLuint id, int success) {
 GLuint ShaderController::load(std::string file, GLenum type) {
     unsigned int shader;
     shader = glCreateShader(type);
-    glShaderSource(shader, 1, this->read(file, "glsl"), NULL);
-    return this->compile(file, shader);
+    const char* out = this->read(file, "glsl");
+    glShaderSource(shader, 1, &out, NULL);
+    return this->compile(file, "glsl", shader);
 }
 
-int ShaderController::getProgramWith() {
+unsigned int ShaderController::getProgramWith() {
     int success;
     unsigned int program;
     program = glCreateProgram();
-    // TODO: Iterate over list of shaders passed by argument (boost::map maybe)
-    //glAttachShader(program, 1);
-    //glAttachShader(program, 2);
-    glLinkProgram(program); // ?
+    BOOST_FOREACH(map_shader::value_type &shader, shaders) {
+        glAttachShader(program, shader.second);
+    }
+    glLinkProgram(program);
     this->debugProgram(program, success);
     return program;
 }
