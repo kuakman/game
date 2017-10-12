@@ -11,7 +11,7 @@ namespace game_main {
     class Main {
         public:
             int run();
-
+            int window();
     };
 
 }

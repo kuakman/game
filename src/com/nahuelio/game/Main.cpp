@@ -5,8 +5,10 @@
  */
 
 #include <iostream>
+#include <QApplication>
 #include "headers/Main.h"
 #include "headers/Game.h"
+#include "view/main/headers/MainWindow.h"
 
 using namespace game_main;
 using namespace game_controller;
@@ -22,9 +24,27 @@ int Main::run() {
 };
 
 /*
+ * Test using QT
+ */
+int Main::window() {
+    MainWindow *window = new MainWindow();
+    window->resize(1280, 960);
+    window->show();
+    return 0;
+}
+
+/*
  * Game Launch
  */
-int main() {
+int main(int argc, char *argv[]) {
+    Q_INIT_RESOURCE(application);
+    QApplication app(argc, argv);
+    QCoreApplication::setOrganizationName("Nahuel IO");
+    QCoreApplication::setApplicationName("Game Application");
+    QCoreApplication::setApplicationVersion(QT_VERSION_STR);
+
     Main *main = new Main();
-    return main->run();
+    main->window();
+    return app.exec();
+    //return main->run();
 };

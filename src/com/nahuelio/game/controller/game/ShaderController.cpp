@@ -56,7 +56,7 @@ void ShaderController::debug(std::string file, GLuint id, int success) {
     if(!success) {
         char infoLog[1024];
         glGetShaderInfoLog(id, 1024, NULL, infoLog);
-        printf("Error Compiling Shader [%s:%d]: %s", file.c_str(), id, infoLog);
+        printf("Error Compiling Shader [%s:%d]: %s\n", file.c_str(), id, infoLog);
     }
 }
 
@@ -65,7 +65,7 @@ void ShaderController::debugProgram(GLuint id, int success) {
     if(!success) {
         char infoLog[1024];
         glGetProgramInfoLog(id, 1024, NULL, infoLog);
-        printf("Error Compiling Program [%d]: %s", id, infoLog);
+        printf("Error Compiling Program [%d]: %s\n", id, infoLog);
     }
 }
 
