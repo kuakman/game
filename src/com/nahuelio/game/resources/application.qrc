@@ -1,4 +1,6 @@
 <!DOCTYPE RCC>
 <RCC version="1.0">
-    <qresource></qresource>
+    <qresource>
+        <file>../view/welcome/welcome.qml</file>
+    </qresource>
 </RCC>

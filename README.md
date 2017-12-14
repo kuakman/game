@@ -1,6 +1,6 @@
 # Experimental C++ Project
  
-#### Uses OpenGL / GLFW3 / Glad / GLM
+#### Uses OpenGL / GLFW3 / Glad / GLM / QT 5
 
 ----
 

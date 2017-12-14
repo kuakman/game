@@ -10,6 +10,7 @@ project(game)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTORCC ON)
 set(BASE_DIR src/com/nahuelio)
 
 message("\nCurrent Profile: " ${CMAKE_PROFILE})
@@ -62,9 +63,10 @@ else()
 endif(glfw3_FOUND)
 
 #### QT5
-find_package(Qt5 5.9.2 REQUIRED Core Widgets Gui Qml Quick)
+find_package(Qt5 5.10.0 REQUIRED Core Widgets Gui Qml Quick Network)
+
 #### QT5 Resources
-file(GLOB_RECURSE Resources src/com/nahuelio/**/*.qrc)
+file(GLOB_RECURSE Resources ${BASE_DIR}/**/*.qrc)
 qt5_add_resources(ResourceSources ${Resources})
 
 # FOR DEBUG

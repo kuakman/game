@@ -4,47 +4,42 @@
  * Copyright (c) 2017 nahuelio. All rights reserved.
  */
 
-#include <iostream>
-#include <QApplication>
+#include <QDebug>
+#include <QGuiApplication>
+#include <QQmlApplicationEngine>
+#include <QQuickWindow>
+#include <QQuickView>
+
 #include "headers/Main.h"
 #include "headers/Game.h"
-#include "view/main/headers/MainWindow.h"
+#include "view/welcome/headers/Welcome.h"
 
 using namespace game_main;
 using namespace game_controller;
 
-/*
- * Run
- */
-int Main::run() {
-    Game::instance()->get("Window")->run();
-    Game::instance()->get("Sound")->run();
-    Game::instance()->get("Game")->run()->terminate();
-    return 0;
+Main::Main(QGuiApplication* app) {
+    this->app = app;
 };
 
 /*
- * Test using QT
+ * Run
  */
-int Main::window() {
-    MainWindow *window = new MainWindow();
-    window->resize(1280, 960);
-    window->show();
-    return 0;
-}
+int Main::run(int argc, char *argv[]) {
+    //Game::instance()->get("Window")->run();
+    //Game::instance()->get("Sound")->run();
+    //Game::instance()->get("Game")->run()->terminate();
+
+    qmlRegisterType<Welcome>("com.nahuelio.game.view.welcome", 1, 0, "Welcome");
+    QQmlApplicationEngine engine;
+    engine.load(QUrl::fromLocalFile(":/view/welcome/welcome.qml"));
+
+    return this->app->exec();
+};
 
 /*
  * Game Launch
  */
 int main(int argc, char *argv[]) {
-    Q_INIT_RESOURCE(application);
-    QApplication app(argc, argv);
-    QCoreApplication::setOrganizationName("Nahuel IO");
-    QCoreApplication::setApplicationName("Game Application");
-    QCoreApplication::setApplicationVersion(QT_VERSION_STR);
-
-    Main *main = new Main();
-    main->window();
-    return app.exec();
-    //return main->run();
+    QGuiApplication app(argc, argv);
+    return (*new Main(&app)).run(argc, argv);
 };
